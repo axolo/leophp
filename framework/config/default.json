@@ -1,0 +1,10 @@
+{
+  "urlformat": "pathinfo",
+  "response": "json",
+  "framework": [
+    { "name": "LeoPHP" },
+    { "version": "0.0.1" },
+    { "author": "Yueming Fang" },
+    { "git": "https://github.com/axolo/leophp.woodso.com" }
+  ]
+}
