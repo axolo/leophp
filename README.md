@@ -23,36 +23,47 @@ LeoPHP Framework
 - [PHP框架的繁荣是正确的发展方向吗？](http://www.iteye.com/topic/319039)
 
 ### 配置
-```js
-// ./config/app.json
-{
+> 为什么不用json或者ini格式？好吧，可以写注释，而且避免不小心被访问，省心。
+
+```php
+<?php
+//array_merge(default_config, user_config)
+return array(
   //pathinfo:     /index.php/resource/method
   //querystring:  /index.php?resource=string&method=string
   //urlrewrite:   /resource/method (@todo)
-  "urlformat": "pathinfo",
+  'urlformat' => 'pathinfo',
   //json:   JSON
   //jsonp:  JSONP
   //xml:    XML (@todo)
-  "response": "json",
+  'response' => 'json',
   // ./plugins/plugins[key].php || framework/plugins[key].php
-  //Array[{ plugin: params }]
-  "plugins": [
-    { "halt": "out of service" },   //Service halt 
-    { "hash": "String of secret"},  //COOKIE, password, token ...
-    { "cors": true },               //CORS
-    { "rbac": true },               //RBAC
-    { "oauth": [] },                //OAuth
-    { "sso": false }                //Single Sign-On
-  ],
-  //Database Params
-  "storage": [
-    { "extension": "PDO" },
-    { "dsn": "mysql:host=localhost;dbname=testdb" },
-    { "user": "root" },
-    { "password": "" },
-    { "option": [] }
-  ]
-}
+  //Array[plugin => params]
+  'plugins' => array(
+    'debug' => true,              //Debug
+    'halt' => 'out of service',   //Service halt 
+    'hash' => 'String of secret', //COOKIE, password, token ...
+    'cors' => true,               //CORS
+    'rbac' => true,               //RBAC
+    'oauth' => [],                //OAuth
+    'sso' => false                //Single Sign-On
+  ),
+  //Database Conection
+  'storage' => array(
+    'extension' => 'PDO',
+    'dsn' => 'mysql:host=localhost;dbname=testdb',
+    'user' => 'root',
+    'password' => '',
+    'option' => array()
+  ),
+  //Farmework Infomation
+  'framework' => array(
+    'name' => 'LeoPHP',
+    'version' => '0.0.1',
+    'author' => 'Yueming Fang',
+    'git' => 'https://github.com/axolo/leophp.woodso.com'
+  )
+);
 ```
 
 > 方跃明
