@@ -3,32 +3,58 @@ namespace leophp;
 
 class App {
 
-  private $__env;
+  private static $__config;
+  private static $__controller;
+  private static $__action;
 
-  private function __getEnv() {
-    return array(
-      'dir'       => __DIR__,
-      'file'      => __FILE__,
-      'namespace' => __NAMESPACE__,
-      'class'     => __CLASS__,
-      'method'    => __METHOD__,
-      'request'   => $_REQUEST,
-      'cookie'    => $_COOKIE,
-      'session'   => $_SESSION,
-      'files'     => $_FILES,
-      'env'       => $_ENV,
-      'server'    => $_SERVER
-    );
+  public function __construct() {
+
   }
 
-  private function __getConfig() {
-    return require_once(__DIR__ . './config/default.php');
+  private static function __setConfig($config) {
+    self::$__config = require_once($config);
+    return self::$__config;
   }
-  
 
-  public static function run() {
-    // return self::__getConfig();
-    return self::__getEnv();
+  private static function __getConfig() {
+    return self::$__config;
+  }
+
+  private static function __parsePlugins($plugins=null) {
+
+  }
+
+  public static function run($config=null) {
+    //@todo 处理默认配置
+    $config && $config = self::__setConfig($config);
+    $controller = 'Index';
+    $action = 'index';
+    //处理控制器
+    if(isset($config['core']['request']) && $config['core']['request'] == 'pathinfo') {
+      if(isset($_SERVER['PATH_INFO'])) {
+        $path = explode('/', $_SERVER['PATH_INFO']);
+        $controller = ucfirst(isset($path[1])&&$path[1] ? $path[1] : $controller);
+        $action = isset($path[2])&&$path[2] ? $path[2] : $action;
+      }
+    }
+    //加载应用Controller->action()
+    $file = getcwd() . DIRECTORY_SEPARATOR . 'controllers' . DIRECTORY_SEPARATOR . $controller . '.php';
+    //应用文件存在
+    if(file_exists($file) && require_once($file)) {
+      $n = __NAMESPACE__ .'\\'. $controller;
+      $c = new $n;
+      $a = $c->$action();
+      //输出及渲染
+      $r = require('View.php');
+      switch(isset($config['response']) && $config['response']) {
+        case 'json':  View::json($a); break;
+        default:      View::render($a);
+      }
+    //应用文件不存在
+    } else {
+      $e = require('Error.php');
+      Error::json(404);
+    }
   }
 
 }
