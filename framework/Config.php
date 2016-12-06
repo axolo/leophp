@@ -2,13 +2,10 @@
 namespace leophp;
 
 class Config {
-  private static $__config;
 
-  public static parse($config) {
-    self::$__config = require_once($config);
+  //@todo
+  public static function parse($config) {
+    return $config;
   }
 
-  public static get() {
-
-  }
 }

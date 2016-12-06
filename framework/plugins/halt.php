@@ -1,1 +1,2 @@
-halt.php
+<?php
+//halt.php

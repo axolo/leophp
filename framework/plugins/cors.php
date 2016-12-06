@@ -1,1 +1,2 @@
-cors.php
+<?php
+//cors.php

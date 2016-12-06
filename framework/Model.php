@@ -1,18 +1,12 @@
 <?php
 namespace leophp;
-// require(__DIR__ . DIRECTORY_SEPARATOR . 'App.php');
 
+/**
+ * @todo  Model::struct()     data struct
+ * @todo  Model::validate()   data validate
+ * @todo  Model::storage()    data storage
+ * @todo  Model::crud()       mode CRUD
+ */
 class Model {
 
-  private static $__config;
-
-  //connect to database
-  public function __construct() {
-    self::$__config = App::__getConfig();
-  }
-
-  public static function get() {
-    return App::__getConfig();
-    return self::$__config;
-  }
 }

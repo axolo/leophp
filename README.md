@@ -1,6 +1,21 @@
 LeoPHP Framework
 =====================
 
+### 说明
+- Ver: 0.1.1
+- PHP >= 5.4, PDO required
+- 基本完成M~~V~~C
+
+### 目录
+- framework: 框架核心
+- app: 应用程序
+
+### 文档
+-  TODO（请参照app）
+
+### 疑问
+- 配置文件为什么不用json或者ini格式？好吧，可以写注释，可以写逻辑，而且避免不小心被访问，省心。君不见`webpack.config.js`也这么干？
+
 ### 由来
 
 由于工作需要，重新开始用PHP，折腾好几个框架（~~班主任：这里就不点名了~~），臃肿厚重，可谓专治各种不服，终于被感动到哭了。
@@ -21,49 +36,5 @@ LeoPHP Framework
 
 - [有感于“论PHP的倒掉”](http://www.iteye.com/topic/523378)
 - [PHP框架的繁荣是正确的发展方向吗？](http://www.iteye.com/topic/319039)
-
-### 配置
-> 为什么不用json或者ini格式？好吧，可以写注释，而且避免不小心被访问，省心。
-
-```php
-<?php
-//array_merge(default_config, user_config)
-return array(
-  //pathinfo:     /index.php/resource/method
-  //querystring:  /index.php?resource=string&method=string
-  //urlrewrite:   /resource/method (@todo)
-  'urlformat' => 'pathinfo',
-  //json:   JSON
-  //jsonp:  JSONP
-  //xml:    XML (@todo)
-  'response' => 'json',
-  // ./plugins/plugins[key].php || framework/plugins[key].php
-  //Array[plugin => params]
-  'plugins' => array(
-    'debug' => true,              //Debug
-    'halt' => 'out of service',   //Service halt 
-    'hash' => 'String of secret', //COOKIE, password, token ...
-    'cors' => true,               //CORS
-    'rbac' => true,               //RBAC
-    'oauth' => [],                //OAuth
-    'sso' => false                //Single Sign-On
-  ),
-  //Database Conection
-  'storage' => array(
-    'extension' => 'PDO',
-    'dsn' => 'mysql:host=localhost;dbname=testdb',
-    'user' => 'root',
-    'password' => '',
-    'option' => array()
-  ),
-  //Farmework Infomation
-  'framework' => array(
-    'name' => 'LeoPHP',
-    'version' => '0.0.1',
-    'author' => 'Yueming Fang',
-    'git' => 'https://github.com/axolo/leophp.woodso.com'
-  )
-);
-```
 
 > 方跃明

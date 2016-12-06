@@ -9,8 +9,14 @@ return array(
     //json:   JSON      Conflux Response, e.g. RESTful
     //jsonp:  JSONP     (@todo)
     //xml:    XML       (@todo)
-    //hmtl:   HTML      default output, view render
-    'response' => 'json'
+    //html:   HTML      default output, view render
+    'response' => 'json',
+    //controller: ucfirst(controller)
+    'controller' => 'index',
+    //action: default index
+    'action' => 'index',
+    //charset: default utf8
+    'charset' => 'utf8'
   ),
   // ./plugins/plugins[key].php || framework/plugins[key].php
   //Array[plugin => params]
@@ -19,24 +25,31 @@ return array(
     'cors' => true,               //CORS
     'rbac' => true,               //RBAC
     'restful' => false,           //RESTful
-    'oauth' => [],                //OAuth
+    'oauth' => array(),           //OAuth
     'sso' => false,               //Single Sign-On
     'halt' => 'out of service',   //Service halt 
     'hash' => 'String of secret'  //COOKIE, password, token ...
   ),
   //Database Conection
+  // 'storage' => array(
+  //   'engine' => 'sqlsrv',
+  //   'charset' => 'gbk',
+  //   'server' => '127.0.0.1',
+  //   'options' => array(
+  //     'Database' => 'AHHKLED',
+  //     'UID' => 'sa',
+  //     'PWD' => 'google')
   'storage' => array(
-    'extension' => 'PDO',
-    'dsn' => 'mysql:host=localhost;dbname=information_schema',
-    'user' => 'root',
-    'password' => '',
-    'option' => array()
+  'engine' => 'pdo',
+  'dsn' => 'sqlsrv:Server=localhost;Database=AHHKLED',
+  'dbuser' => 'sa',
+  'dbpass' => 'google'
   ),
   //Farmework Infomation
   'framework' => array(
     'name' => 'LeoPHP',
-    'version' => '0.0.1',
+    'version' => '0.1.1',
     'author' => 'Yueming Fang',
-    'git' => 'https://github.com/axolo/leophp.woodso.com'
+    'git' => 'https://github.com/axolo/leophp'
   )
 );
