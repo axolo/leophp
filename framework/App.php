@@ -8,6 +8,9 @@ class_exists(__NAMESPACE__ . '\\View')    || require_once(__DIR__ . DIRECTORY_SE
 class App {
 
   private static $__config;
+  // private static $__controller;
+  // private static $__action;
+  // private static $__view;
 
   public static function config() {
     return self::$__config;
@@ -35,14 +38,16 @@ class App {
     }
 
     //load Controller->action()
-    $controller_file = getcwd() . DIRECTORY_SEPARATOR . 'controllers' . DIRECTORY_SEPARATOR . $controller . '.php';
+    $current_dir = getcwd() . DIRECTORY_SEPARATOR;
+    $controller_file = $current_dir . 'controllers' . DIRECTORY_SEPARATOR . $controller . '.php';
+    $view_file = $current_dir . 'views' . DIRECTORY_SEPARATOR .  strtolower($controller) . DIRECTORY_SEPARATOR . $action . '.php';
     if(file_exists($controller_file) && require_once($controller_file)) {
       $controller_name = __NAMESPACE__ .'\\'. $controller;
       $controller_run = new $controller_name;
       $action_run = $controller_run->$action();
       switch(self::$__config['core']['response']) {
         case 'json':  View::json($action_run);   break;
-        default:      View::render($action_run);
+        default:      View::render($action_run, $view_file);
       }
     } else {
       View::error(404);

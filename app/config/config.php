@@ -3,14 +3,14 @@
 return array(
   'core' => array(
     //pathinfo:     /index.php/resource/method
-    //querystring:  /index.php?resource=string&method=string
+    //querystring:  /index.php?resource=string&method=string (@todo)
     //urlrewrite:   /resource/method (@todo)
     'request' => 'pathinfo',
     //json:   JSON      Conflux Response, e.g. RESTful
     //jsonp:  JSONP     (@todo)
     //xml:    XML       (@todo)
     //html:   HTML      default output, view render
-    'response' => 'json',
+    'response' => 'html',
     //controller: ucfirst(controller)
     'controller' => 'index',
     //action: default index
@@ -31,24 +31,17 @@ return array(
     'hash' => 'String of secret'  //COOKIE, password, token ...
   ),
   //Database Conection
-  // 'storage' => array(
-  //   'engine' => 'sqlsrv',
-  //   'charset' => 'gbk',
-  //   'server' => '127.0.0.1',
-  //   'options' => array(
-  //     'Database' => 'AHHKLED',
-  //     'UID' => 'sa',
-  //     'PWD' => 'google')
   'storage' => array(
-  'engine' => 'pdo',
-  'dsn' => 'sqlsrv:Server=localhost;Database=AHHKLED',
-  'dbuser' => 'sa',
-  'dbpass' => 'google'
+    'engine' => 'pdo',  //lowercase
+    'dsn' => 'mysql:host=localhost;dbname=information_schema',
+    'user' => 'root',
+    'password' => '',
+    'options' => array()
   ),
   //Farmework Infomation
   'framework' => array(
     'name' => 'LeoPHP',
-    'version' => '0.1.1',
+    'version' => '0.1.2',
     'author' => 'Yueming Fang',
     'git' => 'https://github.com/axolo/leophp'
   )

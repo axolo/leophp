@@ -17,11 +17,14 @@ class View {
 
   //render to HTML
   public static function render($res, $view = null) {
-    //@todo
-    //require view file and render
-    header('Content-Type:text/html;charset=gbk');
-    echo '<pre>';
-    var_dump($res);
-    echo '</pre>';
+    //@todo default view
+    // if(null == $view) {
+    //   $view = 'view file';
+    // }
+    if(file_exists($view) && require_once($view)) {
+      //@todo defend XSS attacks
+    } else {
+      self::error(404);
+    }
   }
 }

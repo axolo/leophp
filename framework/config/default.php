@@ -3,7 +3,7 @@
 return array(
   'core' => array(
     //pathinfo:     /index.php/resource/method
-    //querystring:  /index.php?resource=string&method=string
+    //querystring:  /index.php?resource=string&method=string (@todo)
     //urlrewrite:   /resource/method (@todo)
     'request' => 'pathinfo',
     //json:   JSON      Conflux Response, e.g. RESTful
@@ -41,7 +41,7 @@ return array(
   //Farmework Infomation
   'framework' => array(
     'name' => 'LeoPHP',
-    'version' => '0.1.1',
+    'version' => '0.1.2',
     'author' => 'Yueming Fang',
     'git' => 'https://github.com/axolo/leophp'
   )
