@@ -10,7 +10,7 @@ return array(
     //jsonp:  JSONP     (@todo)
     //xml:    XML       (@todo)
     //html:   HTML      default output, view render
-    'response' => 'html',
+    'response' => 'json',
     //controller: ucfirst(controller)
     'controller' => 'index',
     //action: default index

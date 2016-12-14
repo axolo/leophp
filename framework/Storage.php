@@ -1,9 +1,10 @@
 <?php
 namespace leophp;
+use \PDO as PDO;
 
 /**
- * @todo interface || abstract ?
+ * @todo
  */
-abstract class Storage {
+class Storage extends PDO {
 
 }

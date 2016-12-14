@@ -12,7 +12,7 @@ class View {
   //error output (json)
   public static function error($err) {
     header('Content-Type:text/json');
-    echo json_encode($err);
+    die(json_encode($err));
   }
 
   //render to HTML

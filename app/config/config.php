@@ -6,10 +6,10 @@ return array(
     //querystring:  /index.php?resource=string&method=string (@todo)
     //urlrewrite:   /resource/method (@todo)
     'request' => 'pathinfo',
+    //html:   HTML      default output, view render
     //json:   JSON      Conflux Response, e.g. RESTful
     //jsonp:  JSONP     (@todo)
     //xml:    XML       (@todo)
-    //html:   HTML      default output, view render
     'response' => 'html',
     //controller: ucfirst(controller)
     'controller' => 'index',

@@ -19,6 +19,7 @@ class App {
   public static function run($config=null) {
     //parse config file
     //@todo array_merge(default-config, user-config) foreach array
+    $config = $config ? $config : __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'default.php';
     self::$__config = Config::parse(require_once($config));
 
     //parse plugins 
@@ -43,6 +44,7 @@ class App {
     $view_file = $current_dir . 'views' . DIRECTORY_SEPARATOR .  strtolower($controller) . DIRECTORY_SEPARATOR . $action . '.php';
     if(file_exists($controller_file) && require_once($controller_file)) {
       $controller_name = __NAMESPACE__ .'\\'. $controller;
+      (class_exists($controller_name) && method_exists($controller_name, $action)) || View::error(405);
       $controller_run = new $controller_name;
       $action_run = $controller_run->$action();
       switch(self::$__config['core']['response']) {

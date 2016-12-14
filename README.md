@@ -2,6 +2,7 @@ LeoPHP Framework
 =====================
 
 ### 目录
+
 ```
 ├─app  
 │  ├─config  
@@ -18,8 +19,10 @@ LeoPHP Framework
 └─framework  
     └─LeoPHP framework  
 ```
+
 ### 文档
 - 配置文件：config/config.php
+
 ```php
 <?php
 //array_merge(default_config, user_config)
@@ -72,6 +75,7 @@ return array(
 ```
 
 - 应用入口：index.php
+
 ```php
 <?php
 namespace leophp;
@@ -82,6 +86,7 @@ App::run($config)
 ```
 
 - 控制器：controllers/Index.php
+
 ```php
 <?php
 namespace leophp;
@@ -96,6 +101,7 @@ class Index extends Controller {
 ```
 
 - 视图：views/index/index.php
+
 ```php
 <!DOCTYPE html>
 <html lang="en">
