@@ -78,11 +78,16 @@ return array(
 
 ```php
 <?php
-namespace leophp;
-defined('LEOPHP') || define('LEOPHP', '..' . DIRECTORY_SEPARATOR .'framework' . DIRECTORY_SEPARATOR);
-require_once(LEOPHP . 'App.php');
+require '../vendor/autoload.php';
+
+use leophp\App        as App;
+use leophp\Controller as Controller;
+use leophp\Model      as Model;
+use leophp\Storage    as Storage;
+
 $config = __DIR__ . DIRECTORY_SEPARATOR .'config' . DIRECTORY_SEPARATOR . 'config.php';
-App::run($config)
+
+App::run($config);
 ```
 
 - 控制器：controllers/Index.php
@@ -90,13 +95,13 @@ App::run($config)
 ```php
 <?php
 namespace leophp;
-require_once(LEOPHP . 'Controller.php');
-// require_once(LEOPHP . 'Model.php');
-// require_once(LEOPHP . 'storage' . DIRECTORY_SEPARATOR . App::config()['storage']['engine'] . '.php');
+
 class Index extends Controller {
+
   public function index() {
     return array('controller' => 'index', 'action' => 'index');
   }
+
 }
 ```
 
@@ -117,7 +122,7 @@ class Index extends Controller {
 
 ### 说明
 - ver
-  - Version: 0.1.2
+  - Version: 0.1.3
   - Required: PHP>=5.4, PDO
   - 初步完成MVC
 - app
