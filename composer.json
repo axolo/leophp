@@ -1,0 +1,20 @@
+{
+    "name": "axolo/leophp",
+    "description": "LeoPHP Framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yueming Fang",
+            "email": "zergdo@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "leophp\\": "framework/"
+        }
+    }
+}
