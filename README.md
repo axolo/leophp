@@ -1,6 +1,30 @@
 LeoPHP Framework
 =====================
 
+### 说明
+- ver
+  - Version: 0.1.3
+  - Required: PHP>=5.3 && PDO
+  - 初步完成MVC
+- app
+  - 完成controller、action、view映射
+  - 当前env存取（未完成）
+- controller
+  - 基本上完全没写
+- model
+  - 基本上完全没写
+- view
+  - 注入视图变量名：`$res`（属于裸奔状态）
+  - 防止XSS攻击（未完成）
+  - 可指定视图渲染（未完成）
+- config
+  - 用户配置合并默认配置（未完成）
+- plugin
+  - 实现了一丢丢（未完成）
+- stroage
+  - 目前可用扩展自PDO（偷懒）
+  - 基本完全没写
+
 ### 目录
 
 ```
@@ -53,7 +77,7 @@ return array(
     'restful' => false,           //RESTful
     'oauth' => array(),           //OAuth
     'sso' => false,               //Single Sign-On
-    'halt' => 'out of service',   //Service halt 
+    'halt' => 'out of service',   //Service halt
     'hash' => 'String of secret'  //COOKIE, password, token ...
   ),
   //Database Conection
@@ -119,30 +143,6 @@ class Index extends Controller {
 </body>
 </html>
 ```
-
-### 说明
-- ver
-  - Version: 0.1.3
-  - Required: PHP>=5.4, PDO
-  - 初步完成MVC
-- app
-  - 完成controller、action、view映射
-  - 当前env存取（未完成）
-- controller
-  - 基本上完全没写
-- model
-  - 基本上完全没写
-- view
-  - 注入视图变量名：`$res`（属于裸奔状态）
-  - 防止XSS攻击（未完成）
-  - 可指定视图渲染（未完成）
-- config
-  - 用户配置合并默认配置（未完成）
-- plugin
-  - 基本完全没写
-- stroage
-  - 目前可用扩展自PDO（偷懒）
-  - 基本完全没写
 
 ### 疑问
 - 配置文件为什么不用json或者ini格式？好吧，可以写注释，可以写逻辑，而且避免不小心被访问，省心。君不见`webpack.config.js`也这么干？

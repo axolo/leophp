@@ -22,9 +22,10 @@ class App {
     $config = $config ? $config : __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'default.php';
     self::$__config = Config::parse(require_once($config));
 
-    //parse plugins 
-    //@todo foreach plugins
-    $plugins = Plugin::parse(self::$__config['plugins']);
+    //parse plugins
+    //@todo plugins maybe Class extends Plugin
+    $plugin_dir = dirname(dirname($config));
+    Plugin::parse(self::$__config['plugins'], $plugin_dir);
 
     //parse Controller/action
     //@todo parse params (pathinfo to querystring put in $_REQUEST)
