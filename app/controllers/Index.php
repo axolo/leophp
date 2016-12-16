@@ -7,4 +7,12 @@ class Index extends Controller {
     return array('controller' => 'index', 'action' => 'index');
   }
 
+  public function server() {
+    return $_SERVER;
+  }
+
+  public function request() {
+    return $_REQUEST;
+  }
+
 }

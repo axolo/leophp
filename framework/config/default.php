@@ -21,27 +21,28 @@ return array(
   // ./plugins/plugins[key].php || framework/plugins[key].php
   //Array[plugin => params]
   'plugins' => array(
-    'debug' => true,              //Debug
     'cors' => true,               //CORS
-    'rbac' => true,               //RBAC
-    'restful' => false,           //RESTful
-    'oauth' => array(),           //OAuth
-    'sso' => false,               //Single Sign-On
-    'halt' => 'out of service',   //Service halt 
-    'hash' => 'String of secret'  //COOKIE, password, token ...
+    'rbac' => true                //RBAC
+    // 'restful' => false,           //RESTful
+    // 'oauth' => array(),           //OAuth
+    // 'sso' => false,               //Single Sign-On
+    // 'debug' => true,              //Debug
+    // 'halt' => 'out of service',   //Service halt
+    // 'hash' => 'String of secret'  //COOKIE, password, token ...
   ),
   //Database Conection
   'storage' => array(
     'engine' => 'pdo',  //lowercase
-    'dsn' => 'mysql:host=localhost;dbname=information_schema',
-    'user' => 'root',
-    'password' => '',
+    // 'dsn' => 'sqlsrv:Server=localhost;Database=AHHKLED',
+    'dsn' => 'sqlsrv:Server=localhost;Database=hkledoa',
+    'user' => 'sa',
+    'password' => 'google',
     'options' => array()
   ),
-  //Farmework Infomation
+  //Farmework Infomation (Just for funny!)
   'framework' => array(
     'name' => 'LeoPHP',
-    'version' => '0.1.2',
+    'version' => '0.1.3',
     'author' => 'Yueming Fang',
     'git' => 'https://github.com/axolo/leophp'
   )
