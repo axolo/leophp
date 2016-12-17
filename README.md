@@ -3,7 +3,7 @@ LeoPHP Framework
 
 ### 说明
 - ver
-  - Version: 0.1.3
+  - Version: 0.1.4
   - Required: PHP>=5.3 && PDO
   - 初步完成MVC
 - app
@@ -13,17 +13,22 @@ LeoPHP Framework
   - 基本上完全没写
 - model
   - 基本上完全没写
+  - ***防止SQL攻击***（请手动使用Utils::sql()）
 - view
   - 注入视图变量名：`$res`（属于裸奔状态）
-  - 防止XSS攻击（未完成）
+  - ***防止XSS攻击***（请手动使用Utils::xss()）
   - 可指定视图渲染（未完成）
 - config
-  - 用户配置合并默认配置（未完成）
+  - 用户配置合并默认配置（未完成：htmlentities()）
 - plugin
   - 实现了一丢丢（未完成）
 - stroage
   - 目前可用扩展自PDO（偷懒）
+  - 或者可以medoo？
   - 基本完全没写
+- utils
+  - Utils::xss()  //防止XSS跨站攻击，echo和print时请考虑使用
+  - Utils::sql()  //防止SQL注入攻击，客户端输入SQL时务必使用
 
 ### 目录
 
@@ -41,7 +46,7 @@ LeoPHP Framework
 │      └─index  
 │          └─index.php  
 └─framework  
-    └─LeoPHP framework  
+    └─ //(LeoPHP framework is here)  
 ```
 
 ### 文档

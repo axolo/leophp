@@ -4,6 +4,7 @@ namespace leophp;
 class_exists(__NAMESPACE__ . '\\Config')  || require_once(__DIR__ . DIRECTORY_SEPARATOR . 'Config.php');
 class_exists(__NAMESPACE__ . '\\Plugin')  || require_once(__DIR__ . DIRECTORY_SEPARATOR . 'Plugin.php');
 class_exists(__NAMESPACE__ . '\\View')    || require_once(__DIR__ . DIRECTORY_SEPARATOR . 'View.php');
+class_exists(__NAMESPACE__ . '\\Utils')   || require_once(__DIR__ . DIRECTORY_SEPARATOR . 'Utils.php');
 
 class App {
 
