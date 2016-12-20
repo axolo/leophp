@@ -22,12 +22,12 @@ return array(
   //Array[plugin => params]
   'plugins' => array(
     'cors' => true,               //CORS
-    'rbac' => true                //RBAC
+    'rbac' => true,               //RBAC
+    'halt' => false,              //Service halt
     // 'restful' => false,           //RESTful
     // 'oauth' => array(),           //OAuth
     // 'sso' => false,               //Single Sign-On
     // 'debug' => true,              //Debug
-    // 'halt' => 'out of service',   //Service halt
     // 'hash' => 'String of secret'  //COOKIE, password, token ...
   ),
   //Database Conection
