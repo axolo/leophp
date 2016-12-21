@@ -51,6 +51,7 @@ class App {
       $action_run = $controller_run->$action();
       switch(self::$__config['core']['response']) {
         case 'json':  View::json($action_run);   break;
+        case 'jsonp': View::jsonp($action_run);   break;
         default:      View::render($action_run, $view_file);
       }
     } else {

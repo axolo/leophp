@@ -1,6 +1,11 @@
 LeoPHP Framework
 =====================
 
+### 更新
+细微改动不再同步更新到coding.net，请移步：
+- https://github.com/axolo/leophp
+- https://packagist.org/packages/axolo/leophp
+
 ### 说明
 - ver
   - Version: 0.1.4
@@ -16,51 +21,64 @@ LeoPHP Framework
   - ***防止SQL攻击***（请手动使用Utils::sql()）
 - view
   - 注入视图变量名：`$res`（属于裸奔状态）
+  - 完成View::jsonp($res)
   - ***防止XSS攻击***（请手动使用Utils::xss()）
   - 可指定视图渲染（未完成）
 - config
-  - 用户配置合并默认配置（未完成：htmlentities()）
+  - 用户配置合并默认配置
 - plugin
-  - 实现了一丢丢（未完成）
+  - 完成用户插件按配置加载及自动忽略不存在配置
 - stroage
   - 目前可用扩展自PDO（偷懒）
   - 或者可以medoo？
-  - 基本完全没写
 - utils
-  - Utils::xss()  //防止XSS跨站攻击，echo和print时请考虑使用
-  - Utils::sql()  //防止SQL注入攻击，客户端输入SQL时务必使用
+  - Utils::xss($htm)
+    - 防止XSS跨站攻击，echo和print时请考虑使用
+  - Utils::sql($sql)
+    - 防止SQL注入攻击，客户端输入SQL时务必使用
+
+### 安装
+
+- Composer
+  - [Composer中文文档](http://docs.phpcomposer.com)
+  - composer.json: `"require": { "php": ">=5.3", "axolo/leophp": "@dev" }`
+  - `composer update`
 
 ### 目录
 
 ```
-├─app  
-│  ├─config  
-│  │   └─config.php  
-│  ├─controllers  
-│  │   └─Index.php   
-│  ├─models  
-│  │   └─Blog.php  
-│  ├─plugins  
-│  │   └─cros.php   
-│  └─views  
-│      └─index  
-│          └─index.php  
-└─framework  
-    └─ //(LeoPHP framework is here)  
+app  
+ ├─ vendor            //Composer
+ │    └─ axolo 
+ │         └─ leophp  //LeoPHP framework
+ ├─ config  
+ │    └─ config.php   //App config 
+ ├─ controllers  
+ │    └─ Index.php   
+ ├─ models  
+ │    └─ Blog.php  
+ ├─ plugins  
+ │    └─ cros.php
+ ├─ html             //(optional) only a example
+ │    └─ jsonp.html  //json or jsonp response example  
+ └─ views  
+      └─ index  
+           └─ index.php
 ```
 
-### 文档
-- 配置文件：config/config.php
+- 配置
 
 ```php
 <?php
-<?php
-//array_merge(default_config, user_config)
+/**
+ * LeoPHP Framework config file
+ * @todo  array_merge(default_config, user_config)
+ */
 return array(
   'core' => array(
-    //pathinfo:     /index.php/resource/method
-    //querystring:  /index.php?resource=string&method=string (@todo)
-    //urlrewrite:   /resource/method (@todo)
+    //pathinfo:     /index.php/controller/action
+    //querystring:  /index.php?controller=string&action=string (@todo)
+    //urlrewrite:   /controller/action (@todo may be just a .htaccess)
     'request' => 'pathinfo',
     //json:   JSON      Conflux Response, e.g. RESTful
     //jsonp:  JSONP     (@todo)
@@ -78,27 +96,26 @@ return array(
   //Array[plugin => params]
   'plugins' => array(
     'cors' => true,               //CORS
-    'rbac' => true                //RBAC
-    // 'restful' => false,           //RESTful
-    // 'oauth' => array(),           //OAuth
-    // 'sso' => false,               //Single Sign-On
-    // 'debug' => true,              //Debug
-    // 'halt' => 'out of service',   //Service halt
-    // 'hash' => 'String of secret'  //COOKIE, password, token ...
+    'rbac' => true,               //RBAC
+    'restful' => false,           //RESTful
+    'oauth' => array(),           //OAuth
+    'sso' => false,               //Single Sign-On
+    'debug' => true,              //Debug
+    'halt' => 'out of service',   //Service halt
+    'hash' => 'String of secret'  //COOKIE, password, token ...
   ),
   //Database Conection
   'storage' => array(
-    'engine' => 'pdo',  //lowercase
-    // 'dsn' => 'sqlsrv:Server=localhost;Database=AHHKLED',
-    'dsn' => 'sqlsrv:Server=localhost;Database=hkledoa',
-    'user' => 'sa',
-    'password' => 'google',
+    'engine' => 'pdo',
+    'dsn' => 'mysql:host=localhost;dbname=information_schema',
+    'user' => 'root',
+    'password' => 'google',     //Eh~~~
     'options' => array()
   ),
   //Farmework Infomation (Just for funny!)
   'framework' => array(
     'name' => 'LeoPHP',
-    'version' => '0.1.3',
+    'version' => '0.1.4',
     'author' => 'Yueming Fang',
     'git' => 'https://github.com/axolo/leophp'
   )

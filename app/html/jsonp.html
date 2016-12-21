@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LeoPHP Framework JSON or JSONP</title>
+</head>
+<body>
+  <h3>JSON 或者 JSONP 输出</h3>
+  <p>请在config.php中设置：</p>
+  <ul>
+    <li>'core' => 'response' => 'json'</li>
+    <li>'core' => 'response' => 'jsonp'</li>
+  </ul>
+  
+  <h4>JSON</h4>
+  <div id="json">等待JSON数据...</div>
+  
+  <h4>JSONP</h4>
+  <div id="jsonp">等待JSONP数据...</div>
+  
+  <script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    $.ajax({
+      url: '../index.php/db',
+      dataType: 'json',
+      success: function(res) {
+        $('#json').text(JSON.stringify(res))
+      }
+    })
+    $.ajax({
+      url: '../index.php/db',
+      dataType: 'jsonp',
+      success: function(res) {
+        $('#jsonp').text(JSON.stringify(res))
+      }
+    })
+  </script>
+</body>
+</html>

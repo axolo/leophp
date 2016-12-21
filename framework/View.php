@@ -9,6 +9,12 @@ class View {
     echo json_encode($res);
   }
 
+  public static function jsonp($res) {
+    header('Content-Type:text/json');
+    $callback = isset($_GET['callback']) ? $_GET['callback'] : 'jsonp_callback';
+    echo $callback . '(' . json_encode($res) . ')';
+  }
+
   //error output (json)
   public static function error($err) {
     header('Content-Type:text/json');
