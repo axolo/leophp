@@ -5,8 +5,26 @@ class Index extends Controller {
 
   public function index() {
     return array(
-      array('controller' => 'index', 'action' => array( 'index', 'server', 'request','sql', 'xss')),
-      array('controller' => 'db',    'action' => array('index'))
+      array(
+        'controller' => 'index',
+        'action' => array(
+          'index',
+          'server',
+          'request',
+          'sql',
+          'xss'
+      )),
+      array(
+        'controller' => 'db',
+        'action' => array(
+          'index'
+      )),
+      array(
+        'controller' => 'attachment',
+        'action' => array(
+          'download',
+          'upload'
+      ))
     );
   }
 

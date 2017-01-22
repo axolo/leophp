@@ -63,7 +63,7 @@ class App {
         }
       } else {
         View::error(404);
-      }      
+      }
     } catch (Exception $e) {
       //@todo json response, may be `View::error($e->getMessage());`
       header('Content-Type:text/plain;charset=gbk');

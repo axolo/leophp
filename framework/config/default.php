@@ -5,6 +5,8 @@
  */
 return array(
   'core' => array(
+    // e.g. $_COOKE['token'] == sha1($config['core']['appkey'] . $token_from_server)
+    'appkey' => 'The Encrypt Key of App',
     //pathinfo:     /index.php/controller/action
     //querystring:  /index.php?controller=string&action=string (@todo)
     //urlrewrite:   /controller/action (@todo may be just a .htaccess)
@@ -33,6 +35,20 @@ return array(
     'halt' => 'out of service',   //Service halt
     'hash' => 'String of secret'  //COOKIE, password, token ...
   ),
+  // Attachment
+  'attachment' => array(
+    'path' => __DIR__
+      . DIRECTORY_SEPARATOR . '..'
+      . DIRECTORY_SEPARATOR . '..'
+      . DIRECTORY_SEPARATOR . 'attachments',
+    'size' => '5M',
+    'mime' => array(
+      'image/png',
+      'image/gif',
+      'image/jpg',
+      'image/jpeg'
+    )
+  ),
   //Database Conection
   'storage' => array(
     'engine' => 'pdo',
@@ -44,7 +60,7 @@ return array(
   //Farmework Infomation (Just for funny!)
   'framework' => array(
     'name' => 'LeoPHP',
-    'version' => '0.1.4',
+    'version' => '0.1.5',
     'author' => 'Yueming Fang',
     'git' => 'https://github.com/axolo/leophp'
   )

@@ -2,127 +2,81 @@ LeoPHP Framework
 =====================
 
 ### 更新
-细微改动不再同步更新到coding.net，请移步：
-- https://github.com/axolo/leophp
-- https://packagist.org/packages/axolo/leophp
+* 配置文件加入appkey，提高安全性
+* 文件上传下载（Attachment）在Controller里实现
+* 文件上传下载（File）应该写到组件里，包括RBAC也应该是与数据库无关的组件
+* 原生与第三方组件的取舍是艺术，也是哲学，第三方也许更强大，原生或许更便捷
+* 细微改动不再同步更新到coding.net，请移步：
+  * https://github.com/axolo/leophp
+  * https://packagist.org/packages/axolo/leophp
+
 
 ### 说明
-- ver
-  - Version: 0.1.4
-  - Required: PHP>=5.3 && PDO
-  - 初步完成MVC
-- app
-  - 完成controller、action、view映射
-  - 当前env存取（未完成）
-- controller
-  - 基本上完全没写
-- model
-  - 基本上完全没写
-  - ***防止SQL攻击***（请手动使用Utils::sql()）
-- view
-  - 注入视图变量名：`$res`（属于裸奔状态）
-  - 完成View::jsonp($res)
-  - ***防止XSS攻击***（请手动使用Utils::xss()）
-  - 可指定视图渲染（未完成）
-- config
-  - 用户配置合并默认配置
-- plugin
-  - 完成用户插件按配置加载及自动忽略不存在配置
-- stroage
-  - 目前可用扩展自PDO（偷懒）
-  - 或者可以medoo？
-- utils
-  - Utils::xss($htm)
-    - 防止XSS跨站攻击，echo和print时请考虑使用
-  - Utils::sql($sql)
-    - 防止SQL注入攻击，客户端输入SQL时务必使用
+* ver
+  * Version: 0.1.5
+  * Required: PHP>=5.3 && PDO
+  * 初步完成MVC
+* app
+  * 完成controller、action、view映射
+  * 当前env存取（未完成）
+* controller
+  * 基本上完全没写
+* model
+  * 基本上完全没写
+  * ***防止SQL攻击***（请手动使用Utils::sql()）
+* view
+  * 注入视图变量名：`$res`（属于裸奔状态）
+  * 完成View::jsonp($res)
+  * ***防止XSS攻击***（请手动使用Utils::xss()）
+  * 可指定视图渲染（未完成）
+* config
+  * 用户配置合并默认配置
+* plugin
+  * 完成用户插件按配置加载及自动忽略不存在配置
+* stroage
+  * 目前可用扩展自PDO（偷懒）
+  * 或者可以medoo？
+* utils
+  * Utils::xss($htm)
+    * 防止XSS跨站攻击，echo和print时请考虑使用
+  * Utils::sql($sql)
+    * 防止SQL注入攻击，客户端输入SQL时务必使用
 
 ### 安装
 
-- Composer
-  - [Composer中文文档](http://docs.phpcomposer.com)
-  - composer.json: `"require": { "php": ">=5.3", "axolo/leophp": "@dev" }`
-  - `composer update`
+* Composer
+  * [Composer中文文档](http://docs.phpcomposer.com)
+  * composer.json: `"require": { "php": ">=5.3", "axolo/leophp": "@dev" }`
+  * `composer update`
 
 ### 目录
 
 ```
-app  
- ├─ vendor            //Composer
- │    └─ axolo 
- │         └─ leophp  //LeoPHP framework
+app                       // Your App root path
+ ├─ vendor                // Composer
+ │    └─ axolo            // LeoPHP framework and example
+ │         ├─ api         // example: Api by LeoPHP
+ │         ├─ web         // example: HTML
+ │         ├─ attachment  // example: Attachment
+ │         └─ framework   // LeoPHP framework
  ├─ config  
- │    └─ config.php   //App config 
+ │    └─ config.php       // App config
  ├─ controllers  
  │    └─ Index.php   
  ├─ models  
  │    └─ Blog.php  
  ├─ plugins  
  │    └─ cros.php
- ├─ html             //(optional) only a example
- │    └─ jsonp.html  //json or jsonp response example  
  └─ views  
       └─ index  
            └─ index.php
 ```
 
-- 配置
+* 配置
+  * 参见`config/config.php`
 
-```php
-<?php
-/**
- * LeoPHP Framework config file
- * @todo  array_merge(default_config, user_config)
- */
-return array(
-  'core' => array(
-    //pathinfo:     /index.php/controller/action
-    //querystring:  /index.php?controller=string&action=string (@todo)
-    //urlrewrite:   /controller/action (@todo may be just a .htaccess)
-    'request' => 'pathinfo',
-    //json:   JSON      Conflux Response, e.g. RESTful
-    //jsonp:  JSONP     (@todo)
-    //xml:    XML       (@todo)
-    //html:   HTML      default output, view render
-    'response' => 'json',
-    //controller: ucfirst(controller)
-    'controller' => 'index',
-    //action: default index
-    'action' => 'index',
-    //charset: default utf8
-    'charset' => 'utf8'
-  ),
-  // ./plugins/plugins[key].php || framework/plugins[key].php
-  //Array[plugin => params]
-  'plugins' => array(
-    'cors' => true,               //CORS
-    'rbac' => true,               //RBAC
-    'restful' => false,           //RESTful
-    'oauth' => array(),           //OAuth
-    'sso' => false,               //Single Sign-On
-    'debug' => true,              //Debug
-    'halt' => 'out of service',   //Service halt
-    'hash' => 'String of secret'  //COOKIE, password, token ...
-  ),
-  //Database Conection
-  'storage' => array(
-    'engine' => 'pdo',
-    'dsn' => 'mysql:host=localhost;dbname=information_schema',
-    'user' => 'root',
-    'password' => 'google',     //Eh~~~
-    'options' => array()
-  ),
-  //Farmework Infomation (Just for funny!)
-  'framework' => array(
-    'name' => 'LeoPHP',
-    'version' => '0.1.4',
-    'author' => 'Yueming Fang',
-    'git' => 'https://github.com/axolo/leophp'
-  )
-);
-```
 
-- 应用入口：index.php
+* 应用入口：index.php
 
 ```php
 <?php
@@ -138,7 +92,7 @@ $config = __DIR__ . DIRECTORY_SEPARATOR .'config' . DIRECTORY_SEPARATOR . 'confi
 App::run($config);
 ```
 
-- 控制器：controllers/Index.php
+* 控制器：controllers/Index.php
 
 ```php
 <?php
@@ -153,7 +107,7 @@ class Index extends Controller {
 }
 ```
 
-- 视图：views/index/index.php
+* 视图：views/index/index.php
 
 ```php
 <!DOCTYPE html>
@@ -169,8 +123,8 @@ class Index extends Controller {
 ```
 
 ### 疑问
-- 配置文件为什么不用json或者ini格式？好吧，可以写注释，可以写逻辑，而且避免不小心被访问，省心。君不见`webpack.config.js`也这么干？
-- 为什么很多都基本上没写？这个……好吧，的确是因为懒。懒是一种态度。我们的口号是：懒，要向Symfony、Laravel看齐！我要轮子！——这借口，没谁了吧。
+* 配置文件为什么不用json或者ini格式？好吧，可以写注释，可以写逻辑，而且避免不小心被访问，省心。君不见`webpack.config.js`也这么干？
+* 为什么很多都基本上没写？这个……好吧，的确是因为懒。懒是一种态度。我们的口号是：懒，要向Symfony、Laravel看齐！我要轮子！——这借口，没谁了吧。
 
 ### 由来
 
@@ -190,7 +144,7 @@ class Index extends Controller {
 
 想想其实并非PHP本身的罪过，人家Facebook不是用得好好的？也许是使唤PHP的某些人暂时迷茫了方向，大炮轰蚂蚁，何其壮观！
 
-- [有感于“论PHP的倒掉”](http://www.iteye.com/topic/523378)
-- [PHP框架的繁荣是正确的发展方向吗？](http://www.iteye.com/topic/319039)
+* [有感于“论PHP的倒掉”](http://www.iteye.com/topic/523378)
+* [PHP框架的繁荣是正确的发展方向吗？](http://www.iteye.com/topic/319039)
 
 > 方跃明

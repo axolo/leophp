@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>LeoPHP Framework Upload</title>
+  <style>
+    #upload form div {
+      margin: 0.5% 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h3>文件上传下载</h3>
+
+  <div id="download">
+
+  </div>
+
+  <div id="upload">
+    <form>
+      <div>
+        <input type="file" placeholder="文件选择">
+      </div>
+      <div>
+        <input type="info" placeholder="文件说明">
+      </div>
+      <div>
+        <button type="button">上传</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+
+  <script src="../libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script>
+
+    $('form').on('click', 'button', function(e){
+
+      var data = new FormData()
+      data.append('info', $('input[type="info"]').val())
+      data.append('file', $('input[type="file"]')[0].files[0])
+
+      $.ajax({
+        url: _API + '/attachment/upload',
+        method: 'POST',
+        data: data,
+        contentType: false, // 注意这里应设为false
+        processData: false,
+        cache: false,
+        success: function(res) {
+          console.log(res)
+
+          var download = ''
+          
+          if(res.mime.split('/')['0'] == 'image') {
+            download += '<li><img src="' + _API
+              + '/attachment/download?file=' + res.file
+              + '" alt="' + res.info + '"></li>'
+          } else {
+            download += '<li>down：<a href="' + _API
+              + '/attachment/download?file=' + res.file
+              + '" alt="' + res.info + '">'
+              + res.name + '</a></li>'
+          }
+
+          for(k in res) {
+            download += '<li>' + k + '：' + res[k] + '</li>'
+          }
+          download = '<ul>' + download + '</ul>'
+          $('#download').html(download)
+
+
+        }
+      })
+
+    })
+  </script>
+</html>
