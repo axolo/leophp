@@ -9,4 +9,12 @@ namespace leophp;
  */
 class Model {
 
+  protected $config;
+  protected $db;
+
+  function __construct() {
+    $this->config = App::config()['storage'];
+    $this->db = new Storage($this->config['dsn'], $this->config['user'], $this->config['password'], $this->config['options']);
+  }
+
 }

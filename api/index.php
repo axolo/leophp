@@ -1,5 +1,7 @@
 <?php
-require '../vendor/autoload.php';
+// require '../vendor/autoload.php';
+// Please require Composer Autoload
+require '../../../autoload.php';
 
 use leophp\App        as App;
 use leophp\Controller as Controller;

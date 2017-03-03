@@ -51,16 +51,19 @@ return array(
   ),
   //Database Conection
   'storage' => array(
-    'engine' => 'pdo',
+    'dbms' => 'mysql',
+    'extension' => 'pdo',
     'dsn' => 'mysql:host=localhost;dbname=information_schema',
     'user' => 'root',
     'password' => 'google',     //Eh~~~
-    'options' => array()
+    'options' => array(
+      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+      PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"))
   ),
   //Farmework Infomation (Just for funny!)
   'framework' => array(
     'name' => 'LeoPHP',
-    'version' => '0.1.5',
+    'version' => '0.1.6',
     'author' => 'Yueming Fang',
     'git' => 'https://github.com/axolo/leophp'
   )

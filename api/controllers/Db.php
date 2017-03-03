@@ -6,9 +6,10 @@ class Db extends Controller {
 
   public function index() {
     $config = App::config()['storage'];
-    $db = new Storage($config['dsn'], $config['user'], $config['password']);
-    $sql = "SELECT * FROM INNODB_SYS_TABLES";
-    return $db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    require_once(join(DIRECTORY_SEPARATOR, array(__DIR__, '..', 'models', $config['dbms'], 'info.php')));
+    $info = new Info();
+    $res = $info->index($passport);
+    return($res);
   }
 
 }

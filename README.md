@@ -1,6 +1,10 @@
 LeoPHP Framework
 =====================
 
+### 警告
+* ***请勿泄露config.php，比如push到公开git仓库***
+* ***DO NOT push you config.php to public git***
+
 ### 更新
 * 配置文件加入appkey，提高安全性
 * 文件上传下载（Attachment）在Controller里实现
@@ -13,7 +17,7 @@ LeoPHP Framework
 
 ### 说明
 * ver
-  * Version: 0.1.5
+  * Version: 0.1.6
   * Required: PHP>=5.3 && PDO
   * 初步完成MVC
 * app
@@ -23,6 +27,7 @@ LeoPHP Framework
   * 基本上完全没写
 * model
   * 基本上完全没写
+  * 非常粗略的写了点构造函数
   * ***防止SQL攻击***（请手动使用Utils::sql()）
 * view
   * 注入视图变量名：`$res`（属于裸奔状态）
