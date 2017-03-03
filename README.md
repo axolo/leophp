@@ -3,7 +3,7 @@ LeoPHP Framework
 
 ### 警告
 * ***请勿泄露config.php，比如push到公开git仓库***
-* ***DO NOT push you config.php to public git***
+* ***DO NOT push config.php to public git***
 
 ### 更新
 * 配置文件加入appkey，提高安全性
