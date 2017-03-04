@@ -1,7 +1,7 @@
 LeoPHP Framework
 =====================
 
-### 警告
+### 警告(WARNING)
 * ***请勿泄露config.php，比如push到公开git仓库***
 * ***DO NOT push config.php to public git***
 
@@ -17,16 +17,19 @@ LeoPHP Framework
 
 ### 说明
 * ver
-  * Version: 0.1.6
+  * Version: 0.2.0
   * Required: PHP>=5.3 && PDO
   * 初步完成MVC
 * app
-  * 完成controller、action、view映射
-  * 当前env存取（未完成）
+  * run: 完成controller、action、view映射
+  * config: 整合配置设置与读取
+  * router: 剥离当前路径（controller/action）设置与读取
 * controller
   * 基本上完全没写
 * model
-  * 基本上完全没写
+  * 合并storage
+  * 目前可用扩展自PDO（偷懒）
+  * 或者可以medoo？
   * 非常粗略的写了点构造函数
   * ***防止SQL攻击***（请手动使用Utils::sql()）
 * view
@@ -34,13 +37,8 @@ LeoPHP Framework
   * 完成View::jsonp($res)
   * ***防止XSS攻击***（请手动使用Utils::xss()）
   * 可指定视图渲染（未完成）
-* config
-  * 用户配置合并默认配置
 * plugin
   * 完成用户插件按配置加载及自动忽略不存在配置
-* stroage
-  * 目前可用扩展自PDO（偷懒）
-  * 或者可以medoo？
 * utils
   * Utils::xss($htm)
     * 防止XSS跨站攻击，echo和print时请考虑使用
@@ -86,15 +84,7 @@ app                       // Your App root path
 ```php
 <?php
 require '../vendor/autoload.php';
-
-use leophp\App        as App;
-use leophp\Controller as Controller;
-use leophp\Model      as Model;
-use leophp\Storage    as Storage;
-
-$config = __DIR__ . DIRECTORY_SEPARATOR .'config' . DIRECTORY_SEPARATOR . 'config.php';
-
-App::run($config);
+leophp\App::run(join(DIRECTORY_SEPARATOR, array(__DIR__, 'config', 'config.php')));
 ```
 
 * 控制器：controllers/Index.php

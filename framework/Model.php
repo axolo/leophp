@@ -1,5 +1,6 @@
 <?php
 namespace leophp;
+use \PDO as PDO;
 
 /**
  * @todo  Model::struct()     data struct
@@ -14,7 +15,7 @@ class Model {
 
   function __construct() {
     $this->config = App::config()['storage'];
-    $this->db = new Storage($this->config['dsn'], $this->config['user'], $this->config['password'], $this->config['options']);
+    $this->db = new PDO($this->config['dsn'], $this->config['user'], $this->config['password'], $this->config['options']);
   }
 
 }
