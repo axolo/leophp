@@ -57,18 +57,18 @@ class App {
 
       // load
       // Controller->action()
-      $current_dir = getcwd() . DIRECTORY_SEPARATOR;
-      $controller_file = $current_dir . 'controllers' . DIRECTORY_SEPARATOR . self::router()['controller'] . '.php';
-      $view_file = $current_dir . 'views' . DIRECTORY_SEPARATOR .  strtolower($controller) . DIRECTORY_SEPARATOR . $action . '.php';
+      $current_dir = getcwd();
+      $controller_file = join(DIRECTORY_SEPARATOR, array($current_dir, 'controllers', self::router()['controller'] . '.php'));
+      $view_file = join(DIRECTORY_SEPARATOR, array($current_dir, 'views',  strtolower($controller), $action . '.php'));
       if(file_exists($controller_file) && require_once($controller_file)) {
         $controller_name = __NAMESPACE__ .'\\'. ucfirst($controller);
-        (class_exists($controller_name) && method_exists($controller_name, $action)) || View::error(405);
-        $controller_run = new $controller_name;
-        $action_run = $controller_run->$action();
+        class_exists($controller_name) && method_exists($controller_name, $action) || View::error(405);
+        // @todo get args from class::method()
+        $run = call_user_func_array(array($controller_name, $action), array());
         switch(self::config()['core']['response']) {
-          case 'json':  View::json($action_run);    break;
-          case 'jsonp': View::jsonp($action_run);   break;
-          default:      View::render($action_run, $view_file);
+          case 'json':  View::json($run);    break;
+          case 'jsonp': View::jsonp($run);   break;
+          default:      View::render($run, $view_file);
         }
       } else {
         View::error(404);

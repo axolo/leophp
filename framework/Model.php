@@ -8,7 +8,7 @@ use \PDO as PDO;
  * @todo  Model::storage()    data storage
  * @todo  Model::crud()       mode CRUD
  */
-class Model {
+class Model extends PDO {
 
   protected $config;
   protected $db;
