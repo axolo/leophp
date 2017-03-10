@@ -1,6 +1,7 @@
 <?php
 namespace leophp;
 use \Exception as Exception;
+use \ReflectionMethod as ReflectionMethod;
 class_exists(__NAMESPACE__ . '\\Plugin')  || require_once(__DIR__ . DIRECTORY_SEPARATOR . 'Plugin.php');
 class_exists(__NAMESPACE__ . '\\View')    || require_once(__DIR__ . DIRECTORY_SEPARATOR . 'View.php');
 class_exists(__NAMESPACE__ . '\\Utils')   || require_once(__DIR__ . DIRECTORY_SEPARATOR . 'Utils.php');
@@ -63,8 +64,10 @@ class App {
       if(file_exists($controller_file) && require_once($controller_file)) {
         $controller_name = __NAMESPACE__ .'\\'. ucfirst($controller);
         class_exists($controller_name) && method_exists($controller_name, $action) || View::error(405);
-        // @todo get args from class::method()
-        $run = call_user_func_array(array($controller_name, $action), array());
+        $controller = new $controller_name;
+        $reflection = new ReflectionMethod($controller, $action);
+        $params = $reflection->getParameters();
+        $run = call_user_func_array(array($controller, $action), $params);
         switch(self::config()['core']['response']) {
           case 'json':  View::json($run);    break;
           case 'jsonp': View::jsonp($run);   break;

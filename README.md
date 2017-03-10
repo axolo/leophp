@@ -17,7 +17,7 @@ LeoPHP Framework
 
 ### 说明
 * ver
-  * Version: 0.2.0
+  * Version: 0.3.0
   * Required: PHP>=5.3 && PDO
   * 初步完成MVC
 * app
@@ -66,8 +66,9 @@ app                       // Your App root path
  │    └─ config.php       // App config
  ├─ controllers  
  │    └─ Index.php   
- ├─ models  
- │    └─ Blog.php  
+ ├─ models
+ │    └─ mysql  
+ │        └─ Blog.php  
  ├─ plugins  
  │    └─ cros.php
  └─ views  
@@ -83,8 +84,9 @@ app                       // Your App root path
 
 ```php
 <?php
+namespace leophp;
 require '../vendor/autoload.php';
-leophp\App::run(join(DIRECTORY_SEPARATOR, array(__DIR__, 'config', 'config.php')));
+App::run(join(DIRECTORY_SEPARATOR, array(__DIR__, 'config', 'config.php')));
 ```
 
 * 控制器：controllers/Index.php
@@ -92,13 +94,10 @@ leophp\App::run(join(DIRECTORY_SEPARATOR, array(__DIR__, 'config', 'config.php')
 ```php
 <?php
 namespace leophp;
-
 class Index extends Controller {
-
   public function index() {
     return array('controller' => 'index', 'action' => 'index');
   }
-
 }
 ```
 

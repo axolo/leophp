@@ -60,7 +60,7 @@ return array(
   //Farmework Infomation (Just for funny!)
   'framework' => array(
     'name' => 'LeoPHP',
-    'version' => '0.1.6',
+    'version' => '0.3.0',
     'author' => 'Yueming Fang',
     'git' => 'https://github.com/axolo/leophp'
   )
